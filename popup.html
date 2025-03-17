@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Learning Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Language Learning Assistant</h1>
+    </header>
+    
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="settings">Settings</button>
+      <button class="tab-btn" data-tab="history">History</button>
+      <button class="tab-btn" data-tab="anki">Anki Export</button>
+    </div>
+    
+    <div class="tab-content">
+      <!-- Settings Tab -->
+      <div id="settings" class="tab-pane active">
+        <form id="settings-form">
+          <div class="form-group">
+            <label for="api-key">LLM API Key</label>
+            <input type="password" id="api-key" placeholder="Enter your API key">
+            <p class="help-text">Required for text analysis. Currently only OpenAI API.</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="anki-deck">Anki Deck Name</label>
+            <input type="text" id="anki-deck" placeholder="Default">
+            <p class="help-text">The Anki deck where cards will be added.</p>
+          </div>
+          
+          <div class="form-group">
+            <button type="submit" id="save-settings">Save Settings</button>
+          </div>
+        </form>
+        
+        <div class="info-box">
+          <h3>How to use</h3>
+          <ol>
+            <li>Highlight text on any webpage</li>
+            <li>Press <kbd>Ctrl+Shift+L</kbd> or right-click and select "Analyze for Language Learning"</li>
+            <li>View the analysis in the popup overlay</li>
+            <li>Add to Anki or copy to clipboard</li>
+          </ol>
+          <p>All your lookups are saved in the History tab.</p>
+        </div>
+      </div>
+      
+      <!-- History Tab -->
+      <div id="history" class="tab-pane">
+        <div class="history-controls">
+          <input type="text" id="history-search" placeholder="Search history...">
+          <button id="clear-history">Clear History</button>
+        </div>
+        
+        <div id="history-list">
+          <!-- History items will be added here dynamically -->
+          <div class="empty-state">
+            <p>Your history will appear here.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Anki Export Tab -->
+      <div id="anki" class="tab-pane">
+        <div class="anki-info">
+          <h3>Anki Integration</h3>
+          <p>There are two ways to add cards to Anki:</p>
+          <ol>
+            <li><strong>Direct Integration:</strong> Install <a href="https://ankiweb.net/shared/info/2055492159" target="_blank">AnkiConnect</a> add-on and keep Anki running to add cards directly.</li>
+            <li><strong>Manual Export:</strong> Export your marked entries as a CSV file for importing into Anki.</li>
+          </ol>
+        </div>
+        
+        <div class="anki-status">
+          <h4>AnkiConnect Status</h4>
+          <div id="anki-connect-status">Checking...</div>
+        </div>
+        
+        <div class="anki-export">
+          <h4>Export Marked Entries</h4>
+          <p><span id="marked-count">0</span> entries marked for export</p>
+          <button id="export-anki" disabled>Export to CSV</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Template for history items -->
+  <template id="history-item-template">
+    <div class="history-item">
+      <div class="history-item-header">
+        <span class="history-text"></span>
+        <span class="history-date"></span>
+      </div>
+      <div class="history-item-actions">
+        <button class="view-analysis">View</button>
+        <button class="mark-for-anki">Mark for Anki</button>
+        <button class="delete-entry">Delete</button>
+      </div>
+    </div>
+  </template>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

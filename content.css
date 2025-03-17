@@ -1,0 +1,190 @@
+#language-learning-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.overlay-content {
+  width: 600px;
+  max-width: 90%;
+  max-height: 80vh;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #4a67e8;
+  color: white;
+}
+
+.overlay-header h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+#close-overlay {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.overlay-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4a67e8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#error-message {
+  color: #e53935;
+  padding: 16px;
+  text-align: center;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+.original-text, .analysis {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.original-text h4, .analysis h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+#original-text-content {
+  white-space: pre-wrap;
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+}
+
+#analysis-content {
+  line-height: 1.5;
+  color: #333;
+  font-size: 15px;
+}
+
+#analysis-content h3, #analysis-content h4, #analysis-content h5 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+#analysis-content ul {
+  padding-left: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+#add-to-anki {
+  background-color: #4a67e8;
+  color: white;
+}
+
+#add-to-anki:hover {
+  background-color: #3a57d8;
+}
+
+#copy-analysis {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+#copy-analysis:hover {
+  background-color: #d0d0d0;
+}
+
+.temp-message {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in, fadeOut 0.3s ease-out 2.7s forwards;
+}
+
+.temp-message.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.temp-message.error {
+  background-color: #e53935;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
